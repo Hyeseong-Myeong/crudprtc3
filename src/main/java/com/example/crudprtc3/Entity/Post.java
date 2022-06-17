@@ -1,5 +1,6 @@
 package com.example.crudprtc3.Entity;
 
+import com.example.crudprtc3.Entity.enums.BoardType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,11 +26,14 @@ public class Post extends BaseTimeEntity {
     @ManyToOne
     User user;
 
+    @Column(nullable = false)
+    private BoardType boardType;
 
     @Builder
-    public Post(String title, String content, User user){
+    public Post(String title, String content, User user, BoardType boardType){
         this.title = title;
         this.content = content;
         this.user = user;
+        this.boardType = boardType;
     }
 }

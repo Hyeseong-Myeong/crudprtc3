@@ -1,11 +1,15 @@
 package com.example.crudprtc3.Service;
 
+import com.example.crudprtc3.Dto.AccountCreateDto;
 import com.example.crudprtc3.Dto.CommentDto;
 import com.example.crudprtc3.Dto.PostDto;
 import com.example.crudprtc3.Dto.UserDto;
+import com.example.crudprtc3.Entity.Account;
 import com.example.crudprtc3.Entity.Comment;
 import com.example.crudprtc3.Entity.Post;
 import com.example.crudprtc3.Entity.User;
+import com.example.crudprtc3.Entity.enums.Role;
+import com.example.crudprtc3.Repository.AccountRepository;
 import com.example.crudprtc3.Repository.CommentRepository;
 import com.example.crudprtc3.Repository.PostRepository;
 import com.example.crudprtc3.Repository.UserRepository;
@@ -25,7 +29,7 @@ public class BoardService {
     private UserRepository userRepository;
     private PostRepository postRepository;
     private CommentRepository commentRepository;
-
+    private AccountRepository accountRepository;
     private final static Logger Log = Logger.getGlobal();
 
 //User 관련 Service
@@ -70,6 +74,22 @@ public class BoardService {
     public void DeleteUser(Long id){
         userRepository.deleteById(id);
         return;
+    }
+
+//Account 관련
+    //Account Create
+    @Transactional
+    public Long CreateAccount(AccountCreateDto dto){
+        return accountRepository.save(dto.toEntity()).getId();
+    }
+
+    @Transactional(readOnly = true)
+    public Boolean LogIn(AccountCreateDto dto){
+        if (accountRepository.findByEmail(dto.getEmail()) != null){
+            return true;
+        }else {
+            throw new EntityExistsException("Account is not exist");
+        }
     }
 
 

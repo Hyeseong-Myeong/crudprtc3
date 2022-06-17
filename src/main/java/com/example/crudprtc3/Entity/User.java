@@ -1,5 +1,6 @@
 package com.example.crudprtc3.Entity;
 
+import com.example.crudprtc3.Entity.enums.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,5 +1,6 @@
 package com.example.crudprtc3.Controller;
 
+import com.example.crudprtc3.Dto.AccountCreateDto;
 import com.example.crudprtc3.Dto.CommentDto;
 import com.example.crudprtc3.Dto.PostDto;
 import com.example.crudprtc3.Dto.UserDto;
@@ -45,6 +46,19 @@ public class BoardController {
         boardService.DeleteUser(id);
         return;
     }
+
+//Account Method
+    //Account 생성
+    @PostMapping("/signup")
+    public Long CreateAccount(@RequestBody AccountCreateDto dto ){
+        return boardService.CreateAccount(dto);
+    }
+
+    @GetMapping("/signin")
+    public Boolean checkAccount(@RequestBody AccountCreateDto dto){
+        return boardService.LogIn(dto);
+    }
+
 
 //Post Method
     @PostMapping("/post")
