@@ -81,8 +81,8 @@ public class BoardController {
     }
 
     @GetMapping("/comment/{id}")
-    public ResponseEntity ReadCommentByPostId(@PathVariable Long PostId){
-        return ResponseEntity.ok(boardService.ReadCommentById(PostId));
+    public ResponseEntity ReadCommentByPostId(@PathVariable Long id){
+        return ResponseEntity.ok(boardService.ReadCommentById(id));
     }
 
 //    @PutMapping("/comment/{id}")

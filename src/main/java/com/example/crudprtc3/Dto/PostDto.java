@@ -9,7 +9,9 @@ public class PostDto {
     private String title;
     private String content;
 
+    private User user;
+
     public Post toEntity(){
-        return Post.builder().title(title).content(content).build();
+        return Post.builder().title(title).content(content).user(user).build();
     }
 }
